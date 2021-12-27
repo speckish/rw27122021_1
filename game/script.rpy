@@ -11,6 +11,9 @@ default cars_punched = 0
 # The game starts here.
 
 label start:
+    # Uncomment the line below to go to the "dating sim" instead of the car punching game.
+    # jump dating_sim
+
     show screen hud
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
