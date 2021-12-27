@@ -5,16 +5,17 @@
 
 define e = Character("Eileen")
 
-
+default num_helped = 0
+default elderly_people_collected = 0
 # The game starts here.
 
 label start:
-
+    show screen hud
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene bg room
+    scene bgg room
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
@@ -24,10 +25,34 @@ label start:
 
     # These display lines of dialogue.
 
-    e "You've created a new Ren'Py game."
+    e "I would like help someone cross the street."
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    e "What should I do?"
 
-    # This ends the game.
+    menu:
+        "Look for an older person.":
+            e "Let's hold hands and make a chain together so the cars can see us better!"
+            jump collect_elderly_people
+        "Try to stop the cars with my bare hands.":
+            pass
 
+    e "Hmm, that sounds like a good idea."
     return
+
+label collect_elderly_people:
+    "Should we grab another elderly person?"
+    menu:
+        "Yes":
+            $ elderly_people_collected += 1
+            "Okay grabbed one more."
+            jump collect_elderly_people
+        "No":
+            e "Okay, I guess we have enough."
+            jump make_a_chain
+
+label make_a_chain:
+    pass
+
+screen hud():
+    text "Number of people collected: [elderly_people_collected]"
+    #text "Number of people helped: [num_helped]"
