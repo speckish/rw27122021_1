@@ -7,6 +7,7 @@ define e = Character("Eileen")
 
 default num_helped = 0
 default elderly_people_collected = 0
+default cars_punched = 0
 # The game starts here.
 
 label start:
@@ -34,7 +35,7 @@ label start:
             e "Let's hold hands and make a chain together so the cars can see us better!"
             jump collect_elderly_people
         "Try to stop the cars with my bare hands.":
-            pass
+            jump punch_cars
 
     e "Hmm, that sounds like a good idea."
     return
@@ -64,6 +65,9 @@ label make_a_chain:
         # we failed
         jump bad_end
 
+label punch_cars:
+    call screen punch_cars
+
 label good_end:
     call screen end_screen
 
@@ -71,6 +75,14 @@ label bad_end:
     call screen end_screen
 
 image black = "#000000"
+
+screen punch_cars():
+    add "black"
+    textbutton "Punch A Car":
+        action SetVariable("cars_punched", cars_punched+1)
+        text_size 128
+        align (0.5, 0.5)
+    text "You have punched [cars_punched] cars."
 
 screen end_screen():
     add "black"
