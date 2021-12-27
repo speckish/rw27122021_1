@@ -64,14 +64,30 @@ label make_a_chain:
         jump bad_end
 
 label bad_end:
-    call screen bad_end_screen
+    call screen end_screen
 
 
 image black = "#000000"
 
-screen bad_end_screen():
+screen end_screen():
     add "black"
-    text "Game Over"
+    text "Game Over":
+        size 128
+        align (0.5, 0.5)
+    vbox:
+        align (0.5, 0.75)
+        text "You helped [num_helped] people in total."
+        if num_helped < 0:
+            $ final_message = "Very bad job, you should feel bad about yourself."
+        elif num_helped == 1:
+            $ final_message = "You tried your best. Maybe you should try again tomorrow. "
+        else:
+            $ final_message = "Okay, pretty good job."
+        text final_message
+
+# < 0 = Very bad job, you should feel bad about yourself.
+# == 1 You tried your best. Maybe you should try again tomorrow.
+# > 1 Okay, pretty good job.
 
 
 screen hud():
