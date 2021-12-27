@@ -51,8 +51,30 @@ label collect_elderly_people:
             jump make_a_chain
 
 label make_a_chain:
-    pass
+    e "Let's try stopping traffic with our human chain now!"
+    if elderly_people_collected >= 4:
+        # sucessful case
+        $ num_helped += elderly_people_collected
+        e "Yay! No one died!"
+    else:
+        e "Oh no, this did not go according to plan."
+        $ num_helped -= elderly_people_collected
+        $ num_helped -= 1
+        # we failed
+        jump bad_end
+
+label bad_end:
+    call screen bad_end_screen
+
+
+image black = "#000000"
+
+screen bad_end_screen():
+    add "black"
+    text "Game Over"
+
 
 screen hud():
-    text "Number of people collected: [elderly_people_collected]"
-    #text "Number of people helped: [num_helped]"
+    vbox:
+        text "Number of people collected: [elderly_people_collected]"
+        text "Number of people helped: [num_helped]"
