@@ -65,7 +65,10 @@ label make_a_chain:
         # we failed
         jump bad_end
 
+default time = 0
+default timer_range = 3
 label punch_cars:
+    $ time = timer_range
     call screen punch_cars
 
 label good_end:
@@ -76,13 +79,38 @@ label bad_end:
 
 image black = "#000000"
 
+
+label count_cars:
+    e "Let's count up the cars now!"
+    if cars_punched > 20:
+        # sucess
+        $ num_helped += cars_punched/2
+        e "We helped so many people!"
+        e "Fuck the cars!"
+    else:
+        # fail
+        $ num_helped = -1
+        e "Oh no, I've died!"
+        e "I guess that was a bad idea after all."
+    call screen end_screen
+
+transform alpha_dissolve:
+    alpha 0.0
+    linear 0.5 alpha 1.0
+    on hide:
+        linear 0.5 alpha 0
+
 screen punch_cars():
     add "black"
     textbutton "Punch A Car":
         action SetVariable("cars_punched", cars_punched+1)
         text_size 128
         align (0.5, 0.5)
-    text "You have punched [cars_punched] cars."
+    vbox:
+        text "You have punched [cars_punched] cars."
+        text "Time left: [time]"
+    timer 0.01 repeat True action If(time > 0, true=SetVariable('time', time - 0.01), false=[Jump("count_cars")])
+    # bar value time range timer_range xalign 0.5 yalign 0.9 xmaximum 300 at alpha_dissolve
 
 screen end_screen():
     add "black"
