@@ -56,6 +56,7 @@ label make_a_chain:
         # sucessful case
         $ num_helped += elderly_people_collected
         e "Yay! No one died!"
+        jump good_end
     else:
         e "Oh no, this did not go according to plan."
         $ num_helped -= elderly_people_collected
@@ -63,9 +64,11 @@ label make_a_chain:
         # we failed
         jump bad_end
 
-label bad_end:
+label good_end:
     call screen end_screen
 
+label bad_end:
+    call screen end_screen
 
 image black = "#000000"
 
