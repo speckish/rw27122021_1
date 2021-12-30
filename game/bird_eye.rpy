@@ -32,11 +32,18 @@ label bird_eye_intro:
 
     # show layered_bird open look_straight
 
-    hide layered_bird
-    "Bird looking."
+    # hide layered_bird
+    # "Bird looking."
 
     show layered_bird
     "Bird looking."
+
+    show layered_bird:
+        easein_elastic 0.25 yoffset -50
+        pause 0.15
+        linear 0.5 yoffset 0
+        repeat
+    "Bird hopping excitement."
 
     #call screen bird_eye_follow
     return
