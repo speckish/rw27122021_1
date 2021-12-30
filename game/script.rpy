@@ -11,6 +11,8 @@ default cars_punched = 0
 # The game starts here.
 
 label start:
+    jump bird_eye_intro
+
     # Uncomment the line below to go to the "dating sim" instead of the car punching game.
     # jump dating_sim
 
