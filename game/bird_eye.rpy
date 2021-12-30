@@ -70,5 +70,21 @@ layeredimage layered_bird:
             "pupil"
             offset (-12, -12)
 
+    group lid:
+        pos (755, 180)
+        anchor (0.5, 0.5)
+        attribute open default:
+            Null()
+        attribute top_closed:
+            "top_lid"
+        attribute bottom_closed:
+            "bottom_lid"
+        attribute squint:
+            "squint"
+
+    attribute exclamation:
+        pos (550, 25)
+        "exclamation"
+
 screen bird_eye_follow:
     add "bird"
