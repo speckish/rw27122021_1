@@ -5,23 +5,37 @@ label bird_eye_intro:
     show bg
     with dissolve
 
-    show bird:
-        anchor (1.0, 0.5)
-        xpos 0.0
-    pause 0.25
-    show bird:
-        align (0.5, 0.5)
-    with move
-    "Show this bird!"
-    show layered_bird
-    "This is the bird with an eye."
-    show layered_bird look_right
-    "Bird looking right."
+    # show bird:
+    #     anchor (1.0, 0.5)
+    #     xpos 0.0
+    # pause 0.25
+    # show bird:
+    #     align (0.5, 0.5)
+    # with move
+    # "Show this bird!"
+    # show layered_bird
+    # "This is the bird with an eye."
+    # show layered_bird look_right
+    # "Bird looking right."
 
-    show layered_bird look_down_right
+    # show layered_bird look_down_right
+    # "Bird looking."
+
+    # show layered_bird look_up_left
+    # "Bird looking."
+
+    # show layered_bird look_up bottom_closed
+    # "Bird looking."
+
+    # show layered_bird open
+    # "Bird looking."
+
+    # show layered_bird open look_straight
+
+    hide layered_bird
     "Bird looking."
 
-    show layered_bird look_up_left
+    show layered_bird
     "Bird looking."
 
     #call screen bird_eye_follow
